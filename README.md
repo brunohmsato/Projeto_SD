@@ -2,6 +2,6 @@
 
 Implementaçao de uma API Rest, com CRUD padrão.
 
-Linguagem: C#
-DB: PostgreSQL
+Linguagem: C# \n
+DB: PostgreSQL \n
 Pacotes: Entity Framework / Swagger
