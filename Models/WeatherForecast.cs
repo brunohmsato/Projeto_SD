@@ -1,4 +1,4 @@
-namespace SistDist
+namespace SistDist.Models
 {
     public class WeatherForecast
     {

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SistDist.Models;
 
 namespace SistDist.Controllers
 {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SistDist.Context;
 using SistDist.Models;
+using SistDist.Models.CreationModel;
 
 namespace SistDist.Controllers
 {
@@ -75,19 +77,47 @@ namespace SistDist.Controllers
             return NoContent();
         }
 
+        //// POST: api/AnimalModels
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<AnimalModel>> PostAnimalModel(AnimalModel animalModel)
+        //{
+        //    if (_context.Animals == null)
+        //    {
+        //        return Problem("Entity set 'ApplicationDbContext.Animals'  is null.");
+        //    }
+        //    _context.Animals.Add(animalModel);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetAnimalModel", new { id = animalModel.Id }, animalModel);
+        //}
+
         // POST: api/AnimalModels
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<AnimalModel>> PostAnimalModel(AnimalModel animalModel)
+        public async Task<ActionResult<AnimalModel>> PostAnimalModel(AnimalCreationModel creationModel)
         {
             if (_context.Animals == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Animals'  is null.");
             }
-            _context.Animals.Add(animalModel);
+
+            var entryModel = new AnimalModel
+            {
+                DataCadastro = creationModel.DataCadastro,
+                Nome = creationModel.Nome,
+                Especie = creationModel.Especie,
+                Raca = creationModel.Raca,
+                Sexo = creationModel.Sexo,
+                Cor = creationModel.Cor,
+                DataNascimento = creationModel.DataNascimento,
+                Peso = creationModel.Peso,
+                Alergia = creationModel.Alergia,
+                TutorId = creationModel.TutorId,
+            };
+            _context.Animals.Add(entryModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAnimalModel", new { id = animalModel.Id }, animalModel);
+            return CreatedAtAction("GetAnimalModel", new { id = entryModel.Id }, entryModel);
         }
 
         // DELETE: api/AnimalModels/5
