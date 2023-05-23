@@ -1,17 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-using SistDist;
+using SistDist.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("connPostgreSQL");
-// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseNpgsql(connectionString));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -6,5 +6,7 @@
         public bool NotificacaoEmail { get; set; }
         public bool NotificacaoWhats { get; set; }
         public int PessoaId { get; set; }
+
+        public virtual PessoaModel Pessoa { get; set; }
     }
 }

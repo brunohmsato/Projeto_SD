@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SistDist;
+using SistDist.Context;
 
 #nullable disable
 
 namespace SistDist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230522212721_InitialDbSetup")]
-    partial class InitialDbSetup
+    [Migration("20230523173219_NewDbCreation")]
+    partial class NewDbCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace SistDist.Migrations
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("SistDist.Models.AnimalModel", b =>
                 {
@@ -31,7 +31,7 @@ namespace SistDist.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Alergia")
                         .IsRequired()
@@ -71,6 +71,8 @@ namespace SistDist.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TutorId");
+
                     b.ToTable("Animals");
                 });
 
@@ -80,7 +82,7 @@ namespace SistDist.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AnimalId")
                         .HasColumnType("integer");
@@ -106,6 +108,10 @@ namespace SistDist.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AnimalId");
+
+                    b.HasIndex("VeterinarioId");
+
                     b.ToTable("Consultas");
                 });
 
@@ -115,60 +121,83 @@ namespace SistDist.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Bairro")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("bairro");
 
                     b.Property<string>("CEP")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("cep");
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
+                        .HasColumnName("cpf");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("cidade");
 
                     b.Property<string>("Complemento")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("complemento");
 
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_cadastro");
 
                     b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_nascimento");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("email");
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("logradouro");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("nome");
 
                     b.Property<int>("Numero")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("numero");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
+                        .HasColumnName("telefone");
 
                     b.Property<string>("UF")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(2)
+                        .HasColumnType("character varying(2)")
+                        .HasColumnName("uf");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pessoas");
+                    b.ToTable("Pessoa", (string)null);
                 });
 
             modelBuilder.Entity("SistDist.Models.TutorModel", b =>
@@ -177,7 +206,7 @@ namespace SistDist.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("NotificacaoEmail")
                         .HasColumnType("boolean");
@@ -190,6 +219,8 @@ namespace SistDist.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PessoaId");
+
                     b.ToTable("Tutores");
                 });
 
@@ -199,7 +230,7 @@ namespace SistDist.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CRMVEstado")
                         .IsRequired()
@@ -245,7 +276,61 @@ namespace SistDist.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PessoaId");
+
                     b.ToTable("Veterinarios");
+                });
+
+            modelBuilder.Entity("SistDist.Models.AnimalModel", b =>
+                {
+                    b.HasOne("SistDist.Models.TutorModel", "Tutor")
+                        .WithMany()
+                        .HasForeignKey("TutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tutor");
+                });
+
+            modelBuilder.Entity("SistDist.Models.ConsultaModel", b =>
+                {
+                    b.HasOne("SistDist.Models.AnimalModel", "Animal")
+                        .WithMany()
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistDist.Models.VeterinarioModel", "Veterinario")
+                        .WithMany()
+                        .HasForeignKey("VeterinarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("Veterinario");
+                });
+
+            modelBuilder.Entity("SistDist.Models.TutorModel", b =>
+                {
+                    b.HasOne("SistDist.Models.PessoaModel", "Pessoa")
+                        .WithMany()
+                        .HasForeignKey("PessoaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pessoa");
+                });
+
+            modelBuilder.Entity("SistDist.Models.VeterinarioModel", b =>
+                {
+                    b.HasOne("SistDist.Models.PessoaModel", "Pessoa")
+                        .WithMany()
+                        .HasForeignKey("PessoaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pessoa");
                 });
 #pragma warning restore 612, 618
         }

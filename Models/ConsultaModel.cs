@@ -10,5 +10,8 @@
         public string Diagnostico { get; set; }
         public int VeterinarioId { get; set; }
         public int AnimalId { get; set; }
+
+        public virtual VeterinarioModel Veterinario { get; set; }
+        public virtual AnimalModel Animal { get; set; }
     }
 }

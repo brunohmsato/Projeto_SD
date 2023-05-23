@@ -1,8 +1,7 @@
-﻿namespace SistDist.Models
+﻿namespace SistDist.Models.CreationModel
 {
-    public class AnimalModel
+    public class AnimalCreationModel
     {
-        public int Id { get; set; }
         public DateTime DataCadastro { get; set; }
         public string Nome { get; set; }
         public string Especie { get; set; }
@@ -13,7 +12,5 @@
         public float Peso { get; set; }
         public string Alergia { get; set; }
         public int TutorId { get; set; }
-
-        public virtual TutorModel Tutor { get; set; }
     }
 }
