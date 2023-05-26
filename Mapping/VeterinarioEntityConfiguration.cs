@@ -8,67 +8,58 @@ namespace SistDist.Mapping
     {
         public void Configure(EntityTypeBuilder<VeterinarioModel> entity)
         {
-            entity.ToTable("Veterinario");
+            entity.ToTable("veterinario");
 
-            entity.HasKey(v => v.Id);
+            entity.HasKey(v => v.id);
 
-            entity.Property(v => v.DataContratacao)
+            entity.Property(v => v.data_contratacao)
                 .HasColumnName("data_contratacao")
                 .IsRequired();
 
-            entity.Property(v => v.DataDemissao)
-                .HasColumnName("data_demissao")
-                .IsRequired();
+            entity.Property(v => v.data_demissao)
+                .HasColumnName("data_demissao");
 
-            entity.Property(v => v.CTPSNumero)
+            entity.Property(v => v.ctps_numero)
                 .HasColumnName("ctps_numero")
                 .HasMaxLength(20)
                 .IsRequired();
 
-            entity.Property(v => v.CTPSSerie)
+            entity.Property(v => v.ctps_serie)
                 .HasColumnName("ctps_serie")
                 .HasMaxLength(20)
                 .IsRequired();
 
-            entity.Property(v => v.CTPSEstado)
+            entity.Property(v => v.ctps_estado)
                 .HasColumnName("ctps_estado")
                 .HasMaxLength(2)
                 .IsRequired();
 
-            entity.Property(v => v.PISPasesp)
+            entity.Property(v => v.pis_pasesp)
                 .HasColumnName("pis_pasesp")
                 .HasMaxLength(20)
                 .IsRequired();
 
-            entity.Property(v => v.Salario)
+            entity.Property(v => v.salario)
                 .HasColumnName("salario")
                 .IsRequired();
 
-            entity.Property(v => v.CRMVNumero)
+            entity.Property(v => v.crmv_numero)
                 .HasColumnName("crmv_numero")
                 .HasMaxLength(20)
                 .IsRequired();
 
-            entity.Property(v => v.CRMVEstado)
+            entity.Property(v => v.crmv_estado)
                 .HasColumnName("crmv_estado")
                 .HasMaxLength(2)
                 .IsRequired();
 
-            entity.Property(v => v.NotificacaoEmail)
-                .HasColumnName("notificacao_email")
-                .IsRequired();
-
-            entity.Property(v => v.NotificacaoWhats)
-                .HasColumnName("notificacao_whats")
-                .IsRequired();
-
-            entity.Property(v => v.PessoaId)
+            entity.Property(v => v.pessoa_id)
                 .HasColumnName("pessoa_id")
                 .IsRequired();
 
             entity.HasOne(v => v.Pessoa)
                 .WithOne()
-                .HasForeignKey<VeterinarioModel>(v => v.PessoaId)
+                .HasForeignKey<VeterinarioModel>(v => v.pessoa_id)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

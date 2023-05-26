@@ -1,21 +1,23 @@
-﻿namespace SistDist.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SistDist.Models
 {
+    [Table("veterinario")]
     public class VeterinarioModel
     {
-        public int Id { get; set; }
-        public DateTime DataContratacao { get; set; }
-        public DateTime DataDemissao { get; set; }
-        public string CTPSNumero { get; set; }
-        public string CTPSSerie { get; set; }
-        public string CTPSEstado { get; set; }
-        public string PISPasesp { get; set; }
-        public float Salario { get; set; }
-        public string CRMVNumero { get; set; }
-        public string CRMVEstado { get; set; }
-        public bool NotificacaoEmail { get; set; }
-        public bool NotificacaoWhats { get; set; }
-        public int PessoaId { get; set; }
+        public int id { get; set; }
+        public DateTime data_contratacao { get; set; }
+        public DateTime? data_demissao { get; set; }
+        public string ctps_numero { get; set; }
+        public string ctps_serie { get; set; }
+        public string ctps_estado { get; set; }
+        public string pis_pasesp { get; set; }
+        public float salario { get; set; }
+        public string crmv_numero { get; set; }
+        public string crmv_estado { get; set; }
+        public int pessoa_id { get; set; }
 
+        [ForeignKey("pessoa_id")]
         public virtual PessoaModel Pessoa { get; set; }
     }
 }

@@ -1,20 +1,23 @@
-﻿namespace SistDist.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SistDist.Models
 {
+    [Table("pessoa")]
     public class PessoaModel
     {
-        public int Id { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public string Nome { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public string Email { get; set; }
-        public string CPF { get; set; }
-        public string Telefone { get; set; }
-        public string Logradouro { get; set; }
-        public int Numero { get; set; }
-        public string Complemento { get; set; }
-        public string Bairro { get; set; }
-        public string Cidade { get; set; }
-        public string UF { get; set; }
-        public string CEP { get; set; }
+        public int id { get; set; }
+        public DateTime data_cadastro { get; set; }
+        public string nome { get; set; }
+        public DateTime data_nascimento { get; set; }
+        public string email { get; set; }
+        public string cpf { get; set; }
+        public string telefone { get; set; }
+        public string logradouro { get; set; }
+        public int numero { get; set; }
+        public string complemento { get; set; }
+        public string bairro { get; set; }
+        public string cidade { get; set; }
+        public string uf { get; set; }
+        public string cep { get; set; }
     }
 }
