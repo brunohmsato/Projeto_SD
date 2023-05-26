@@ -13,34 +13,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
+                @Html.DisplayNameFor(model => model.data_cadastro)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                @Html.DisplayNameFor(model => model.nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Especie)
+                @Html.DisplayNameFor(model => model.especie)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Raca)
+                @Html.DisplayNameFor(model => model.raca)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sexo)
+                @Html.DisplayNameFor(model => model.sexo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cor)
+                @Html.DisplayNameFor(model => model.cor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
+                @Html.DisplayNameFor(model => model.data_nascimento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Peso)
+                @Html.DisplayNameFor(model => model.peso)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Alergia)
+                @Html.DisplayNameFor(model => model.alergia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TutorId)
+                @Html.DisplayNameFor(model => model.tutor_id)
             </th>
             <th></th>
         </tr>
@@ -49,39 +49,39 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
+                @Html.DisplayFor(modelItem => item.data_cadastro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+                @Html.DisplayFor(modelItem => item.nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Especie)
+                @Html.DisplayFor(modelItem => item.especie)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Raca)
+                @Html.DisplayFor(modelItem => item.raca)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sexo)
+                @Html.DisplayFor(modelItem => item.sexo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cor)
+                @Html.DisplayFor(modelItem => item.cor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
+                @Html.DisplayFor(modelItem => item.data_nascimento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Peso)
+                @Html.DisplayFor(modelItem => item.peso)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Alergia)
+                @Html.DisplayFor(modelItem => item.alergia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TutorId)
+                @Html.DisplayFor(modelItem => item.tutor_id)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
             </td>
         </tr>
 }

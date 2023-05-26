@@ -1,12 +1,16 @@
-﻿namespace SistDist.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SistDist.Models
 {
+    [Table("tutor")]
     public class TutorModel
     {
-        public int Id { get; set; }
-        public bool NotificacaoEmail { get; set; }
-        public bool NotificacaoWhats { get; set; }
-        public int PessoaId { get; set; }
+        public int id { get; set; }
+        public bool notificacao_email { get; set; }
+        public bool notificacao_whats { get; set; }
+        public int pessoa_id { get; set; }
 
+        [ForeignKey("pessoa_id")]
         public virtual PessoaModel Pessoa { get; set; }
     }
 }

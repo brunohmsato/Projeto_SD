@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SistDist.Context;
@@ -11,9 +12,11 @@ using SistDist.Context;
 namespace SistDist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230526030147_NewConfigDB_correcaoVeterinarioModel")]
+    partial class NewConfigDB_correcaoVeterinarioModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +32,9 @@ namespace SistDist.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("Tutorid")
+                        .HasColumnType("integer");
 
                     b.Property<string>("alergia")
                         .IsRequired()
@@ -68,7 +74,7 @@ namespace SistDist.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("tutor_id");
+                    b.HasIndex("Tutorid");
 
                     b.ToTable("animal");
                 });
@@ -80,6 +86,12 @@ namespace SistDist.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("Animalid")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Veterinarioid")
+                        .HasColumnType("integer");
 
                     b.Property<int>("animal_id")
                         .HasColumnType("integer");
@@ -105,9 +117,9 @@ namespace SistDist.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("animal_id");
+                    b.HasIndex("Animalid");
 
-                    b.HasIndex("veterinario_id");
+                    b.HasIndex("Veterinarioid");
 
                     b.ToTable("consulta");
                 });
@@ -205,6 +217,9 @@ namespace SistDist.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<int>("Pessoaid")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("notificacao_email")
                         .HasColumnType("boolean");
 
@@ -216,7 +231,7 @@ namespace SistDist.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("pessoa_id");
+                    b.HasIndex("Pessoaid");
 
                     b.ToTable("tutor");
                 });
@@ -228,6 +243,9 @@ namespace SistDist.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<int>("Pessoaid")
+                        .HasColumnType("integer");
 
                     b.Property<string>("crmv_estado")
                         .IsRequired()
@@ -267,7 +285,7 @@ namespace SistDist.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("pessoa_id");
+                    b.HasIndex("Pessoaid");
 
                     b.ToTable("veterinario");
                 });
@@ -276,7 +294,7 @@ namespace SistDist.Migrations
                 {
                     b.HasOne("SistDist.Models.TutorModel", "Tutor")
                         .WithMany()
-                        .HasForeignKey("tutor_id")
+                        .HasForeignKey("Tutorid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -287,13 +305,13 @@ namespace SistDist.Migrations
                 {
                     b.HasOne("SistDist.Models.AnimalModel", "Animal")
                         .WithMany()
-                        .HasForeignKey("animal_id")
+                        .HasForeignKey("Animalid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SistDist.Models.VeterinarioModel", "Veterinario")
                         .WithMany()
-                        .HasForeignKey("veterinario_id")
+                        .HasForeignKey("Veterinarioid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -306,7 +324,7 @@ namespace SistDist.Migrations
                 {
                     b.HasOne("SistDist.Models.PessoaModel", "Pessoa")
                         .WithMany()
-                        .HasForeignKey("pessoa_id")
+                        .HasForeignKey("Pessoaid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -317,7 +335,7 @@ namespace SistDist.Migrations
                 {
                     b.HasOne("SistDist.Models.PessoaModel", "Pessoa")
                         .WithMany()
-                        .HasForeignKey("pessoa_id")
+                        .HasForeignKey("Pessoaid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

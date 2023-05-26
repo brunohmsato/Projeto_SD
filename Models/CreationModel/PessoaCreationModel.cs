@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SistDist.Models
+﻿namespace SistDist.Models.CreationModel
 {
-    [Table("pessoa")]
-    public class PessoaModel
+    public class PessoaCreationModel
     {
-        public int id { get; set; }
         public DateTime data_cadastro { get; set; }
         public string nome { get; set; }
         public DateTime data_nascimento { get; set; }

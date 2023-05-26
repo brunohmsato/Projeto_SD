@@ -8,25 +8,25 @@ namespace SistDist.Mapping
     {
         public void Configure(EntityTypeBuilder<TutorModel> entity)
         {
-            entity.ToTable("Tutor");
+            entity.ToTable("tutor");
 
-            entity.HasKey(t => t.Id);
+            entity.HasKey(t => t.id);
 
-            entity.Property(t => t.NotificacaoEmail)
+            entity.Property(t => t.notificacao_email)
                 .HasColumnName("notificacao_email")
                 .IsRequired();
 
-            entity.Property(t => t.NotificacaoWhats)
+            entity.Property(t => t.notificacao_whats)
                 .HasColumnName("notificacao_whats")
                 .IsRequired();
 
-            entity.Property(t => t.PessoaId)
+            entity.Property(t => t.pessoa_id)
                 .HasColumnName("pessoa_id")
                 .IsRequired();
 
             entity.HasOne(t => t.Pessoa)
                 .WithOne()
-                .HasForeignKey<TutorModel>(t => t.PessoaId)
+                .HasForeignKey<TutorModel>(t => t.pessoa_id)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

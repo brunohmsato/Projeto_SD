@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SistDist.Models
+﻿namespace SistDist.Models.CreationModel
 {
-    [Table("veterinario")]
-    public class VeterinarioModel
+    public class VeterinarioCreationModel
     {
-        public int id { get; set; }
         public DateTime data_contratacao { get; set; }
         public DateTime? data_demissao { get; set; }
         public string ctps_numero { get; set; }
@@ -16,8 +12,5 @@ namespace SistDist.Models
         public string crmv_numero { get; set; }
         public string crmv_estado { get; set; }
         public int pessoa_id { get; set; }
-
-        [ForeignKey("pessoa_id")]
-        public virtual PessoaModel Pessoa { get; set; }
     }
 }

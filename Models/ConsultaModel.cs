@@ -1,17 +1,23 @@
-﻿namespace SistDist.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SistDist.Models
 {
+    [Table("consulta")]
     public class ConsultaModel
     {
-        public int Id { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime DataConsulta { get; set; }
-        public TimeSpan HorarioConsulta { get; set; }
-        public float ValorConsulta { get; set; }
-        public string Diagnostico { get; set; }
-        public int VeterinarioId { get; set; }
-        public int AnimalId { get; set; }
+        public int id { get; set; }
+        public DateTime data_cadastro { get; set; }
+        public DateTime data_consulta { get; set; }
+        public TimeSpan horario_consulta { get; set; }
+        public float valor_consulta { get; set; }
+        public string diagnostico { get; set; }
+        public int animal_id { get; set; }
+        public int veterinario_id { get; set; }
 
-        public virtual VeterinarioModel Veterinario { get; set; }
+        [ForeignKey("animal_id")]
         public virtual AnimalModel Animal { get; set; }
+
+        [ForeignKey("veterinario_id")]
+        public virtual VeterinarioModel Veterinario { get; set; }
     }
 }
