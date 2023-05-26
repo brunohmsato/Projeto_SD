@@ -29,10 +29,6 @@ Para acessar os endpoints desta API, não é necessário fornecer credenciais v�
 ##### Parâmetros de consulta
 Nenhum parâmetro adicional é necessário.
 
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-|             |            |                                     |
-
 
 #### (2) Retorna somente um item da tabela desejada, baseado no ID fornecido
 
