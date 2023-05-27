@@ -7,6 +7,7 @@ Implementação de API Rest, com CRUD simples e conexão a banco PostgreSQL.
 - [@brunohmsato](https://github.com/brunohmsato)
 - [@gustavossantos](https://github.com/Gustavo-02)
 - [@murilorissos](https://github.com/murilorissos)
+- [@nicolasalbert](https://github.com/temberwood)
 
 ## Documentação da API
 
