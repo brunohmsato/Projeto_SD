@@ -26,7 +26,6 @@ namespace SistDist.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            //optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=SistemasDistribuidos1;User Id=postgres;Password=admin"); //Bruno
             optionsBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection")); //Bruno
         }
 
@@ -35,6 +34,10 @@ namespace SistDist.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new PessoaEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new VeterinarioEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new TutorEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new AnimalEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ConsultaEntityConfiguration());
         }
     }
 }
